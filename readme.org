@@ -1,0 +1,4 @@
+#+TITLE: Documentation Server Demo
+
+To use the web version, simply run make start-server in the root of the repo and then go to [your ip]:8000.
+
