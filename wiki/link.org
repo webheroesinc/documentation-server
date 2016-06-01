@@ -1,0 +1,6 @@
+#+LOGO: ./img/logo.png
+#+TITLE: Link Page Title
+
+* The thing linked to here.
+
+Press the logo to go to the home page.

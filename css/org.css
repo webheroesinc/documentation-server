@@ -1,0 +1,254 @@
+body {
+  font-size: 16px;
+}
+.project {
+  font-size: 40px;
+}
+
+h1, h2 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+h2 {
+  margin-top: 40px;
+}
+
+h3 {
+  color: #6D6D6D;
+  border-left: 10px solid gray;
+  padding-left: 10px;
+  margin-left: 0px;
+  font-size: 27px;
+}
+
+h4 {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 16px;
+  margin: 30px 0 10px;
+}
+
+/* h3, h4, h5, h6 { */
+/*   margin-right: 20px; */
+/*   margin-left: 20px; */
+/* } */
+
+.header-level-3,
+.header-level-4{
+  margin: 0 20px 10px;
+}
+
+.logo {
+  border-bottom: 3px solid #577EB9;
+  padding: 20px 10px;
+}
+
+.logo img {
+  max-width: 230px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  margin: 0 0 20px;
+}
+.card {
+  width: calc( 50% - 40px );
+  height: 240px;
+  border: 1px dashed black;
+  font-size: 17px !important;
+  padding: 40px;
+  margin: 20px;
+  vertical-align: top;
+  position: relative;
+}
+
+.card .scrum-number {
+  font-size: 25px;
+  position: absolute;
+}
+
+.card .parent-story {
+  font-size: 12px;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  width: calc( 100% - 110px );
+}
+
+.card .status {
+  display: block;
+  color: rgb(255, 0, 0);
+  font-size: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+
+  top: 20%;
+  left: 0;
+  position: absolute;
+
+  opacity: 0.3;
+  transform: rotate(-7deg);
+}
+
+.card .value {
+  bottom: 20px;
+  right: 40px;
+  color: rgb( 0, 0, 255 );
+  border: 1px solid red;
+  -webkit-print-color-adjust: exact;
+}
+
+.card .effort {
+  bottom: 20px;
+  left: 40px;
+  color: rgb(255, 0, 0);
+}
+
+.card .roi {
+  top: 20px;
+  right: 40px;
+  color: rgb( 0, 129, 0 );
+}
+
+.story {
+  display: block;
+  background: #d9edf7;
+}
+
+.card .card-title {
+  margin-bottom: 8px;
+  width: calc( 100% - 40px );
+  font-size: 25px !important;
+}
+
+.story p {
+  margin: 0;
+}
+
+.task {
+  display: inline-block;
+  font-size: 18px;
+  background: #fcf8e3;
+}
+
+@media print {
+  .print-hide, hr {
+    display: none;
+  }
+
+  #content > div.card {
+    background: none;
+    display: inline-block;
+    width: calc( 100% + 40px ) ;
+    margin: 0 -20px;
+    max-height: 276px;
+    page-break-before: always;
+    border-width: 0;
+  }
+
+  .card .status {
+    top: 25%;
+  }
+
+  p.screenshot img {
+    max-width: 100%;
+  }
+}
+
+.inspect-cursor {
+  cursor: url('/images/magnifying_glass.png'), auto;
+}
+
+p.screenshot img {
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: url('../img/magnifying_glass.png'), auto;
+
+  max-width: 100px;
+
+  -webkit-transition: max-width 0.5s; /* Safari */
+  transition: max-width 0.5s;
+}
+
+p.screenshot.active img {
+  max-width: 100%;
+}
+
+.index:before {
+  content: "Index";
+  font-size: 30px;
+  padding: 15px 0;
+  display: block;
+}
+.index {
+  list-style: none;
+  padding: 0;
+  line-height: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.index .H1,
+.index .H2,
+.index .H3,
+.index .H4,
+.index .H5,
+.index .H6 {
+  border-style: solid;
+  padding-left: 12px;
+}
+
+/* .index .H1:hover, */
+/* .index .H2:hover, */
+/* .index .H3:hover, */
+/* .index .H4:hover, */
+/* .index .H5:hover, */
+/* .index .H6:hover { */
+/*   border-color: #aaa; */
+/* }   */
+.index .H1 {
+  border-width: 0 0 0 5px;
+  padding: 10px;
+  border-color: #ccc;
+  font-size: 30px;
+}
+.index .H2 {
+  border-width: 0 0 0 20px;
+  border-color: #ccc;
+  font-size: 20px;
+}
+.index .H3 {
+  border-width: 0 0 0 40px;
+  border-color: #eee;
+  font-size: 18px;
+}
+.index .H4 {
+  border-width: 0 0 0 50px;
+  border-color: #eee;
+  font-size: 16px;
+}
+.index .H5 {
+  border-width: 0 0 0 60px;
+  border-color: #eee;
+  font-size: 14px;
+}
+.index .H6 {
+  border-width: 0 0 0 60px;
+  border-color: #eee;
+  font-size: 14px;
+}
+

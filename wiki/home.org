@@ -1,0 +1,45 @@
+#+LOGO: ./img/logo.png
+#+TITLE: Documentation Title
+
+* Header Level 1
+  
+  To see the web version, simply run make start-server in the root of the repo and then go to [your ip]:8000.
+  
+#+BEGIN_LEAD 
+This is the lead text directive.  Did you notice the index above?
+#+END_LEAD
+  
+** Header Level 2
+
+   *bold*, _italic_, regular text
+
+*** Header Level 3
+*** Examples
+
+**** Tables    
+
+    | *Bold Cell*        | Not Bold Cell  |
+    |--------------------+----------------|
+    | This is in a table |                |
+    |                    | And so is this |
+    
+**** Documentation link.
+
+[[link.org][Click Here]]
+
+**** Directives
+
+     To add more directives check in the js/converter.js file and just
+     add your own to the default map.
+
+***** Screenshot directive:
+
+#+SCREENSHOT: ./img/screenshots/demo-screenshot.png
+
+***** Alert Directives
+
+#+INFO: Info directive
+#+WARN: Warn directive
+#+DANGER: Danger directive
+
+
