@@ -1,51 +1,64 @@
+var parser	= new Org.Parser();
+var $content	= $('#content');
+
 function get_param(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    var regex		= new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var result	= ( regex.exec( location.search ) || [] )[1];
+    
+    return result === undefined
+	? ""
+	: decodeURIComponent( result
+			      .replace( /\+/g, " " )
+			      .replace( /\/$/, '' ) );
 }
 
 var base_dir		= '/wiki'
-var org;
+var path		= base_dir + '/' + ( get_param( 'file' ) || get_param( 'f' ) || 'home.org' )
 
-var path		= base_dir + '/' + ( get_param( 'file' ) || get_param( 'f' ) || 'home.org' );
-if( path[ path.length-1 ] == '/' ) {
-    // Remove slash at the end of path
-    path		= path.substring(0, path.length - 1)
-}
+// Validate this is a .org link we're looking for
+if( path.substr( -4 ) !== '.org' )
+    path		= path+'.org'
 
-var Parser		= new Org.Parser();
+$.ajax( {
+    url: path,
+    dataType: 'text',
+    success: function( text ) {
+	var parsed	= parser.parse( text );
+	html		= Converter( parsed, get_param('map') || null );
 
-var fetch_file	= function( path, callback ) {
-    console.log( 'Fetching ', path )
-    $.ajax( {
-	url: path,
-	dataType: "text",
-	success: function( result ) {
-	    $('.404-error').addClass('hidden')
-	    org		= result;
-	    if( callback )
-		callback();
-	},
-	error: function( a, b, c ) {
-	    $('.404-error').removeClass('hidden');
-	    $('.404-error .file-name').html( path );
-	    console.log( "Call Error", arguments );
-	}
-    } )
-}
+	$content.append( html );
 
-fetch_file( path, function() {
-    $('#html-page').html( html )
-} );
+	var $index	= $('<ul/>').addClass('index');
+	$('h1, h2, h3, h4, h5, h6').not('.header *').each( function(i, el) {
+	    $index
+		.append(
+		    $('<li/>')
+			.addClass(el.tagName)
+			.append(
+			    $('<a/>').attr('href', '#'+$(el)
+					   .html().replace(/ /g, '-')
+					   .toLowerCase())
+				.html($(el).html())
+			)
+		)
+	} );
 
+	$('.header').after($index);
 
-// var to_html		= function( org ) {
-//     var data		= Parser.parse( org );
-//     console.log('Parsed', data)
-//     return data.convert( Org.ConverterHTML, {
-// 	suppressSubScriptHandling: false,
-// 	suppressAutoLink: false
-//     }).toString();
-// }
-
+	$('.screenshot').on('click', function() {
+	    $(this).toggleClass('active');
+	})
+	
+	$(document).trigger('converted')
+    },
+    error: function( a, b, c ) {
+	$( '.error' )
+	    .removeClass('hidden')
+	    .append([
+		$( '<strong />' ).html( '404 File Not Found: ' ),
+		$( '<span />' ).html( path )
+	    ]);
+	console.log( "Call Error", arguments );
+    }
+} )
